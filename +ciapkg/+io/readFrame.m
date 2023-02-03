@@ -142,6 +142,9 @@ function [thisFrame,movieFileID,inputMovieDims] = readFrame(inputMoviePath,frame
                 % of strcture with field cdata, so I comment the following
                 % commend [HM Feb/03/2023]
                 % thisFrame = thisFrame.cdata; 
+                if isfield(thisFrame,'cdata')
+                    thisFrame = thisFrame.cdata;
+                end
 
 				if options.rgbDisplay==0
 					if size(thisFrame,3)==3&isempty(options.rgbChannel)
