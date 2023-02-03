@@ -136,7 +136,13 @@ function [thisFrame,movieFileID,inputMovieDims] = readFrame(inputMoviePath,frame
 					xyloObj = options.movieFileID;
 				end
 				thisFrame = read(xyloObj, frameNo,'native');
-				thisFrame = thisFrame.cdata;
+				
+                % xyloObj is the video obj read by VideoReader
+                % in my case the video ojb is read as HxWx3xF array instead
+                % of strcture with field cdata, so I comment the following
+                % commend [HM Feb/03/2023]
+                % thisFrame = thisFrame.cdata; 
+
 				if options.rgbDisplay==0
 					if size(thisFrame,3)==3&isempty(options.rgbChannel)
 						thisFrame = squeeze(thisFrame(:,:,1));
