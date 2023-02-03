@@ -411,7 +411,7 @@ function [outputMovie, movieDims, nPixels, nFrames] = loadMovieList(movieList, v
 				dims.two(iMovie) = xyloObj.Width;
 				dims.three(iMovie) = xyloObj.NumberOfFrames;
 				tmpFrame = read(xyloObj, 1, 'native');
-				tmpFrame = tmpFrame.cdata;
+				% tmpFrame = tmpFrame.cdata;
 				% tmpFrame = readFrame(xyloObj);
 			case 'isxd'
 				inputMovieIsx = isx.Movie.read(thisMoviePath);
