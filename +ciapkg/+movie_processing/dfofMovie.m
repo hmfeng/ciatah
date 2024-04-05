@@ -22,8 +22,15 @@ function [dfofMatrix, inputMovieF0, inputMovieStd] = dfofMovie(inputMovie, varar
 	options.dfofType = 'dfof';
 	% String: 'soft' calculates based on percentile (to avoid outliers), 'min' calculates the normal minimum.
 	options.minType = 'soft';
-	% Float: Calculates the X percentile for minimum F0.
+	
+    % add by HM 04/03/2024
+    options.normalizeBeforeRegister = 'bandpass';
+    
+    % Float: Calculates the X percentile for minimum F0.
 	options.minSoftPct = 0.1/100;
+
+
+
 	% Binary: 1 = waitbar on
 	options.waitbarOn = 1;
 	% get options
@@ -61,6 +68,18 @@ function [dfofMatrix, inputMovieF0, inputMovieStd] = dfofMovie(inputMovie, varar
 		% options.newFilename = [pathstr '\concat_' name '.h5'];
 	end
 	inputMovieClass = class(inputMovie);
+
+    % add by HM 04/03/2024 %
+    if strcmp(options.normalizeBeforeRegister,'bandpass')
+        inputMovie = inputMovie+1;
+    end
+    % adjust for problems with movies that have negative pixel values before dfof
+    minMovie = min(inputMovie(:));
+    if minMovie<0
+        inputMovie = inputMovie + 1.1*abs(minMovie);
+    end
+
+    % add by HM -- end %
 
 	% get the movie F0, do by row to reduce potential memory errors on some versions of Matlab
 	if sum(strcmp(dfofType,stdList))>0

@@ -21,11 +21,12 @@ inputDatasetName = '/1';
 rawFileRegexp = 'concat';
 
 % Setup folder paths
-analysisFolderPath = [ciapkg.getDir() filesep 'data' filesep '2014_04_01_p203_m19_check01'];
+% analysisFolderPath = [ciapkg.getDir() filesep 'data' filesep '2014_04_01_p203_m19_check01'];
+analysisFolderPath = 'F:\m33\2024_03_21_m33_demo';
 [~,folderName,~] = fileparts(analysisFolderPath);
 % Setup NWB folder paths
-nwbFilePath = [analysisFolderPath filesep 'nwbFiles' filesep folderName];
-nwbFileFolderPath = [analysisFolderPath filesep 'nwbFiles'];
+% nwbFilePath = [analysisFolderPath filesep 'nwbFiles' filesep folderName];
+% nwbFileFolderPath = [analysisFolderPath filesep 'nwbFiles'];
 
 % Load CIAtah functions
 ciapkg.loadBatchFxns();

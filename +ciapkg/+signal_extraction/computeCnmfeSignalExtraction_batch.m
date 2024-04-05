@@ -221,7 +221,7 @@ function [cnmfeAnalysisOutput] = computeCnmfeSignalExtraction_batch(inputMovie,v
 		update_sn = options.update_sn;
 
 		% ----------------------  WITH MANUAL INTERVENTION  --------------------  %
-		with_manual_intervention = false;
+		with_manual_intervention = false; % default false
 
 		% -------------------------  FINAL RESULTS   -------------------------  %
 		save_demixed = true;    % save the demixed file or not

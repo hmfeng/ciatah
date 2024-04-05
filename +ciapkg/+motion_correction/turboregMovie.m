@@ -88,7 +88,7 @@ function [inputMovie, ResultsOutOriginal] = turboregMovie(inputMovie, varargin)
 	% whether to use 'imtransform' or 'imwarp' (Matlab) or 'transfturboreg' (C)
 	options.registrationFxn = 'transfturboreg';
 	% display options for verification of input
-	options.displayOptions = 0;
+	options.displayOptions = 1;
 	% character string, path to save turboreg coordinates
 	options.saveTurboregCoords = [];
 	% already have registration coordinates
@@ -114,7 +114,7 @@ function [inputMovie, ResultsOutOriginal] = turboregMovie(inputMovie, varargin)
 			% 3 - projective, rotation,    no skew
 			% 4 - affine,     no rotation, skew
 			% 5 - projective, rotation,    no skew
-		options.RegisType = 3;
+		options.RegisType = 1;
 		% Int: amount of smoothing along the x and y respectively. They give the half-width of a recursive Gaussian smoothing window.
 		options.SmoothX = 80;%10
 		options.SmoothY = 80;%10
@@ -132,7 +132,7 @@ function [inputMovie, ResultsOutOriginal] = turboregMovie(inputMovie, varargin)
 		options.Interp = 'bilinear'; %'bicubic'
 	% =======NORMAL OPTIONS=======
 	% DEPRECATED, see options.RegisType. 1 = take turboreg rotation, 0 = no rotation
-	options.turboregRotation = 1;
+	options.turboregRotation = 0;
 	% max number of frames in the input matrix
 	options.maxFrame = [];
 	% number of frames to subset when registering

@@ -2767,13 +2767,14 @@ function [valid, directionOfNextChoice, saveData, i, lastSortedSignal] = respond
 			disp('Enter actual number')
 		end
 	elseif isequal(reply, 115)
-		movieDecision = questdlg('Are you sure you want to exit?', ...
+		movieDecision = questdlg('Are you sure to set all remaning cells to bad?', ...
 			'Finish sorting', ...
 			'yes','no','yes');
 		if strcmp(movieDecision,'yes')
 			% 's' if user wants to get ride of the rest of the ICs
 			disp(['classifying the following signals as bad: ' num2str(i) ':' num2str(nFilters)])
-			valid(i:nFilters) = 0;
+			% valid(i:nFilters) = 0; % comment by HM [12/01/2023], this step is
+            % buggy and can set all the sorted cells to value 0, disaster!
 			saveData = 1;
 		end
 	elseif isequal(reply, 121)||isequal(reply, 1)||isequal(reply, 30)
