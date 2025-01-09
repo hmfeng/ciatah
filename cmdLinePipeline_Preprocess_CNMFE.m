@@ -29,11 +29,11 @@ run_cnmfe = 0;
 inputDatasetName = '/1';
 rawFileRegexp = 'concat';
 
-toptions.cropCoords = [170 120 420 450]/dspace_factor; % speicify the crop_coord beforehead
+toptions.cropCoords = [170 30 570 280]/dspace_factor; % speicify the crop_coord beforehead
 
 % Setup folder paths
 % analysisFolderPath = [ciapkg.getDir() filesep 'data' filesep '2014_04_01_p203_m19_check01'];
-analysisFolderPathAll = {'D:\ChenLab_DATA_Backup\Hemin_MiniScope_Processed\m19\2023_08_18_m19_demo'};
+analysisFolderPathAll = {'D:\ChenLab_DATA_Backup\Hemin_MiniScope_Processed\m5102\2024_12_11_m5102_demo'};
    % 'D:\ChenLab_DATA_Backup\Hemin_MiniScope_Processed\m33\2024_03_23_m33_rtppbaseline03'};
     % 'D:\ChenLab_DATA_Backup\Hemin_MiniScope_Processed\m34\2024_03_21_m34_demo';
     %'D:\ChenLab_DATA_Backup\Hemin_MiniScope_Processed\m35\2024_03_21_m35_demo'};
@@ -128,7 +128,7 @@ inputMovie_ds = ciapkg.api.downsampleMovie(inputMovie,'downsampleDimension','spa
 toptions.RegisType = 1;
 toptions.turboregRotation = 0;
 toptions.removeEdges = 1;
-toptions.pxToCrop = 60;
+toptions.pxToCrop =  14; %60; % 14
 toptions.refFrame = 100;
 %toptions.refFrameMatrix = single(inputMovie_ds(:,:,toptions.refFrame));
 
@@ -140,16 +140,16 @@ toptions.complementMatrix = 1;
 toptions.meanSubtract = 1;
 toptions.meanSubtractNormalize = 1;
 toptions.normalizeType = 'matlabDisk';
-toptions.normalizeFreqLow = 10;
-toptions.normalizeFreqHigh = 200;
+toptions.normalizeFreqLow = 70; %70
+toptions.normalizeFreqHigh = 100; %100
 
 % Spatial filter
-%toptions.normalizeBeforeRegister = 'divideByLowpass';
+% toptions.normalizeBeforeRegister = 'divideByLowpass';
 toptions.normalizeBeforeRegister = 'bandpass';
 
 toptions.bandpassBeforeRegister = 0;
 toptions.freqLow = 20;
-toptions.freqHigh = 100;
+toptions.freqHigh =  100; %100
 
 % toptions.returnNormalizedMovie=0;
 
@@ -169,7 +169,7 @@ inputMovie3 = ciapkg.api.dfofMovie(single(inputMovie2),'normalizeBeforeRegister'
 
 
 % Run temporal downsampling
-inputMovie3 = ciapkg.api.downsampleMovie(inputMovie3,'downsampleDimension','time','downsampleFactor',4);
+inputMovie3 = ciapkg.api.downsampleMovie(inputMovie3,'downsampleDimension','time','downsampleFactor',dstime_factor);
 
 % USER INTERFACE Final check of movie before cell extraction
 if show_preprocess
